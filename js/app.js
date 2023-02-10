@@ -43,7 +43,7 @@ function buildModal(data, index) {
     console.log(data)
 
     console.log(data.results[index].dob);
-    const birthYear = data.results[index].dob.date.substring(0, 3);
+    const birthYear = data.results[index].dob.date.substring(0, 4);
     const birthMonth = data.results[index].dob.date.substring(5, 7);
     const birthDay = data.results[index].dob.date.substring(8, 10);
 
