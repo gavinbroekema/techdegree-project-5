@@ -1,12 +1,18 @@
 let json;
 
-//  thumbnail image, full name, email, and location
+/**
+ * Fetches 12 users from the random user API and sends back the data as response
+ */
 fetch('https://randomuser.me/api/?inc=picture,name,email,cell,location,dob&nat=US&results=12')
     .then(data => data.json())
     .then(data => json = data)
     .then(data => buildEmployeeHTML(data))
 
-
+/**
+ * Takes the data from the randomuser API fetch then builds and
+ * displays each user card on the page
+ * @param {} data 
+ */
 function buildEmployeeHTML(data) {
     const gallery = document.getElementById('gallery');
     let cardHTML = '';
@@ -27,6 +33,11 @@ function buildEmployeeHTML(data) {
     gallery.insertAdjacentHTML('beforeend', cardHTML);
 }
 
+/**
+ * Builds the modal window
+ * @param {*} data 
+ * @param {*} index 
+ */
 function buildModal(data, index) {
     console.log(index)
     console.log(data)
@@ -55,6 +66,10 @@ function buildModal(data, index) {
     gallery.insertAdjacentHTML('afterend', modalHTML);
 }
 
+/**
+ * Listens for a click on one of the emplolyee cards and 
+ * matches the card information with the respective index from the randomuser API
+ */
 const gallery = document.getElementById('gallery');
 gallery.addEventListener('click', (e) => {
     let employeeIndex = null;
@@ -78,9 +93,12 @@ gallery.addEventListener('click', (e) => {
 
 })
 
-// figure out modal being on the page before it is?
+/**
+ * Listens for a click on the modal window exit button
+ * removes the element 
+ */
 document.body.addEventListener('click', (e) => {
-    if(e.target.id === 'modal-close-btn') {
+    if(e.target.closest('#modal-close-btn')) {
         let modal = document.querySelector('.modal-container');
         console.log(modal);
         modal.remove();
